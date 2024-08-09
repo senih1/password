@@ -1,0 +1,20 @@
+﻿@model PostModel
+
+<div class="tweet-container">
+    <div class="profile-photo">
+        <a href="/profile/@Model.Post.Username/@Model.Post.UserId">
+            <img src="@Model.Post.ProfilePictureUrl" alt="Profile Photo">
+        </a>
+    </div>
+    <div class="tweet-content">
+        <p class="tweet-user-id">
+            <a href="/profile/@Model.Post.Username/@Model.Post.UserId">@Model.Post.Username</a>
+        </p>
+        <a href="/post/@Model.Post.Id">
+            <p class="tweet-contents">@Model.Post.Message</p>
+        </a>
+        <p class="tweet-created-date">@Model.Post.CreatedDate</p>
+    </div>
+</div>
+
+@Html.Partial("Partials/_Comment", Model)

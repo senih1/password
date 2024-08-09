@@ -1,0 +1,50 @@
+﻿@model PostModel
+
+<div class="comments-section">
+    
+    <div class="add-comment-form">
+        <h5>Yorum Ekle</h5>
+        <form action="/addComment" method="post" autocomplete="off">
+            <input type="hidden" name="postId" value="@Model.Post.Id" />
+            <textarea required placeholder="Yorum yap" name="Message"></textarea>
+            <button type="submit">Gönder</button>
+        </form>
+    </div>
+    
+    <h4>Yorumlar</h4>
+    @if (Model.Comments.Count == 0)
+    {
+        <p>Henüz bir yorum eklenmemiş.</p>
+    }
+    else
+    {
+        <ul>
+            @foreach (var comment in Model.Comments)
+            {
+                <li class="comment-item">
+                    <div class="comment-profile">
+                        <img src="@comment.ProfilePictureUrl" alt="Profil Fotoğrafı" />
+                    </div>
+                    <div class="comment-content">
+                        <div class="comment-user">
+                            @comment.Username
+                            <span class="comment-date">(@comment.CreatedDate.ToString("dd.MM.yyyy HH:mm"))</span>
+                        </div>
+                        <div class="comment-message">
+                            @comment.Message
+                        </div>
+                        @if (ViewBag.isOwner == true)
+                        {
+                            <a href="/deleteComment/@comment.Id">
+                                <p class="button">Delete</p>
+                            </a>
+                        }
+                    </div>
+                </li>
+            }
+        </ul>
+    }
+</div>
+
+
+

@@ -1,0 +1,24 @@
+﻿@model User
+
+<form method="post" action="/changeFullName/@Model.Id" class="custom-form">
+    <h2 class="form-title">İsim Değiştir</h2> 
+    <div class="custom-form-group">
+        <input name="fullname" value="@Model.FullName" placeholder="Yeni İsim Soy İsim" class="custom-input" required />
+        <button class="custom-button">Değiştir</button>
+    </div>
+</form>
+
+<form method="post" action="/changePassword/@Model.Id" class="custom-form">
+    <h2 class="form-title">Şifre Değiştir</h2>
+    <div class="custom-form-group">
+        <input name="password" placeholder="Yeni Şifre" class="custom-input" required />
+        <button class="custom-button">Değiştir</button>
+    </div>
+</form>
+
+<form method="post" action="/addprofilepicture/@Model.Id" enctype="multipart/form-data" class="custom-form">
+    <h2 class="form-title">Profil Resmi Ekle</h2>
+        <p><input type="file" name="ProfilePicture" accept="image/png,image/jpeg" class="custom-file-input" required /></p>
+        <button class="custom-button">Ekle</button>
+    </div>
+</form>

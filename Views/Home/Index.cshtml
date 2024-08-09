@@ -1,0 +1,46 @@
+﻿@model List<Post>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+@if (TempData["Login"] != null)
+{
+    <div class="alert @TempData["LoginCss"] mb-5" role="alert">
+        @TempData["Login"]
+    </div>
+}
+<div class="text-center">
+    <h1 class="display-4">Naber @ViewData["Username"]!</h1>
+    @if (ViewData["Username"] != null)
+    {
+        <p><a href="/logout">Cikis yap</a></p>
+    }
+</div>
+<form method="post" action="addPost">
+    <input name="Message" placeholder="Bugün nasıl hissediyorsun?" required />
+    <br />
+    <label for="private">Görünürlüğü seçin:</label>
+    <select name="isPrivate" id="private">
+        <option value="true">Gizli</option>
+        <option value="false">Açık</option>
+    </select>
+    <button>Gönder</button>
+</form>
+
+@foreach (var post in Model)
+{
+    <div class="tweet-container">
+        <div class="profile-photo">
+            <a href="/profile/@post.Username/@post.UserId"><img src="@post.ProfilePictureUrl" alt="Profile Photo"></a>
+        </div>
+        <div class="tweet-content">
+            <p class="tweet-user-id">
+                <a href="/profile/@post.Username/@post.UserId">@post.Username</a>
+            </p>
+            <a href="/post/@post.UserId/@post.Id">
+                <p class="tweet-contents">@post.Message</p>
+            </a>
+            <p class="tweet-created-date">@post.CreatedDate</p>
+        </div>
+    </div>
+}
